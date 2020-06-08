@@ -1,36 +1,40 @@
 package UserService;
 
+import java.util.List;
+
 import Dao.UserHibernateDAO;
 import User.User;
+
 import java.sql.SQLException;
-import java.util.List;
 
 public class UserService {
 
     private static UserService userService;
 
-    public static UserService getUserService(){
-        if(userService == null){
+    public static UserService getUserService() {
+        if (userService == null) {
             userService = new UserService();
         }
         return userService;
     }
 
-    public void addUser(User user) throws SQLException{
+    public void addUser(User user) throws SQLException {
         UserHibernateDAO.getUserHibernateDAO().addUser(user);
     }
 
-    public boolean updateUser(User user) throws SQLException{
+    public boolean updateUser(User user) throws SQLException {
         return UserHibernateDAO.getUserHibernateDAO().updateUser(user);
     }
 
-    public User getUserById(int id){
+    public User getUserById(int id) {
         return UserHibernateDAO.getUserHibernateDAO().getUserById(id);
     }
-    public List< User > getAllUsers(){
+
+    public List< User > getAllUsers() {
         return UserHibernateDAO.getUserHibernateDAO().getAllUsers();
     }
-    public boolean deleteUser(int id) throws SQLException{
+
+    public boolean deleteUser(int id) throws SQLException {
         return UserHibernateDAO.getUserHibernateDAO().deleteUser(id);
     }
 }

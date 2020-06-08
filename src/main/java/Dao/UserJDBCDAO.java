@@ -11,8 +11,8 @@ public class UserJDBCDAO implements UserDAOInterface {
 
     private static UserJDBCDAO userDAO;
 
-    public static UserJDBCDAO getUserDAO(){
-        if(userDAO == null){
+    public static UserJDBCDAO getUserDAO() {
+        if (userDAO == null) {
             userDAO = new UserJDBCDAO();
         }
         return userDAO;

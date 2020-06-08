@@ -4,15 +4,14 @@ import User.User;
 import UserDAOInterface.UserDAOInterface;
 import org.hibernate.Session;
 import util.DBHelper;
-
 import java.sql.SQLException;
 import java.util.List;
 
 public class UserHibernateDAO implements UserDAOInterface {
     private static UserHibernateDAO userHibernateDAO;
 
-    public static UserHibernateDAO getUserHibernateDAO(){
-        if(userHibernateDAO == null){
+    public static UserHibernateDAO getUserHibernateDAO() {
+        if (userHibernateDAO == null) {
             userHibernateDAO = new UserHibernateDAO();
         }
         return userHibernateDAO;
@@ -20,8 +19,8 @@ public class UserHibernateDAO implements UserDAOInterface {
 
     private static Session session;
 
-    public static Session getSession(){
-        if(session == null){
+    public static Session getSession() {
+        if (session == null) {
             session = DBHelper.getSessionFactory().openSession();
         }
         return session;

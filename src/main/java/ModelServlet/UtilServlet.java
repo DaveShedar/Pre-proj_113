@@ -1,21 +1,23 @@
 package ModelServlet;
 
+import java.util.List;
+
 import User.User;
 import UserService.UserService;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 public class UtilServlet {
 
     private static UtilServlet utilServlet;
 
-    public static UtilServlet getUtilServlet(){
-        if(utilServlet == null){
+    public static UtilServlet getUtilServlet() {
+        if (utilServlet == null) {
             utilServlet = new UtilServlet();
         }
         return utilServlet;
