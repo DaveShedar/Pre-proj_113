@@ -9,56 +9,66 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserHibernateDAO implements UserDAOInterface {
-    private Session session = DBHelper.getSessionFactory().openSession();
+    private static UserHibernateDAO userHibernateDAO;
 
-//    public UserHibernateDAO(Session session) {
-//        this.session = session;
-//    }
+    public static UserHibernateDAO getUserHibernateDAO(){
+        if(userHibernateDAO == null){
+            userHibernateDAO = new UserHibernateDAO();
+        }
+        return userHibernateDAO;
+    }
+
+    private static Session session;
+
+    public static Session getSession(){
+        if(session == null){
+            session = DBHelper.getSessionFactory().openSession();
+        }
+        return session;
+    }
 
     public UserHibernateDAO() {
     }
 
     @Override
     public void addUser(User user) throws SQLException {
-        session.save(user);
-        session.flush();
-        session.clear();
+        getSession().save(user);
+        getSession().flush();
+        getSession().clear();
     }
 
     @Override
     public User getUserById(int id) {
-        User user = (User) session.get(User.class, id);
-        session.flush();
-        session.clear();
+        User user = (User) getSession().get(User.class, id);
+        getSession().flush();
+        getSession().clear();
         return user;
-
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List< User > getAllUsers() {
-        session.getTransaction().begin();
-        List< User > list = session.createQuery(" FROM User").list();
-        session.getTransaction().commit();
-        session.flush();
-        session.clear();
+        getSession().getTransaction().begin();
+        List< User > list = getSession().createQuery(" FROM User").list();
+        getSession().getTransaction().commit();
+        getSession().flush();
+        getSession().clear();
         return list;
     }
 
     @Override
     public boolean deleteUser(int id) throws SQLException {
-        session.delete(session.get(User.class, id));
-        session.flush();
-        session.clear();
+        getSession().delete(getSession().get(User.class, id));
+        getSession().flush();
+        getSession().clear();
         return true;
     }
 
     @Override
     public boolean updateUser(User user) throws SQLException {
-
-        session.update(user);
-        session.flush();
-        session.clear();
+        getSession().update(user);
+        getSession().flush();
+        getSession().clear();
         return true;
     }
 }
